@@ -1,14 +1,14 @@
-```bash
+```sh
 # 1.编译项目
-$ mvn clean package 
+$mvn clean package 
 # 2.制作Images
-$ docker build -t registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta -f docker/Dockerfile .
+$docker build -t registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta -f docker/Dockerfile .
 # 3.设置标签 ImageId:镜像id 通过docker images查看， 镜像版本号:设置该镜像的版本
-$ docker tag registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta
+$docker tag registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta
 # 4.登录阿里云容器服务 不用每次登陆
-$ docker login --username=北京人人检 registry.cn-beijing.aliyuncs.com
+$docker login --username=北京人人检 registry.cn-beijing.aliyuncs.com
 # 5.推送镜像到阿里云容器服务
-$ docker push registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta
+$docker push registry.cn-beijing.aliyuncs.com/vcheck/munichre-mall:1.0-beta
 ```
 
 ```Dockerfile tomcat
