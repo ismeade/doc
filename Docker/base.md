@@ -59,7 +59,22 @@ $sudo docker info
 
 ## 命令
 
-[run](./command/run.md)
+[run](./command/run.md): 创建一个新的容器并运行一个命令
+[start](./command/start_stop_restart.md): 启动一个或多个已经被停止的容器
+[stop](./command/start_stop_restart.md): 停止一个运行中的容器
+[restart](./command/start_stop_restart.md): 重启容器
+[kill](./command/kill.md): 杀掉一个运行中的容器
+[rm](./command/rm.md): 删除一个或多个容器
+[pause](./command/pause_unpause.md): 暂停容器中所有的进程
+[unpause](./command/pause_unpause.md): 恢复容器中所有的进程
+[create](./command/create.md)
+
+[ps](./command/ps.md): 容器列表
+[top](./command/top.md): 查看容器中运行的进程信息，支持 ps 命令参数。
+[logs](./command/logs.md): 获取容器的日志
+[exprot](./command/export.md): 将文件系统作为一个tar归档文件导出到STDOUT
+[port](./command/port.md): 列出指定的容器的端口映射
+
 
 ## 镜像
 
@@ -194,4 +209,3 @@ $docker build -t 镜像名:版本 -f xxxx/Dockerfile .
 
 [https://github.com/docker/docker-ce](https://github.com/docker/docker-ce)
 
-[https://www.runoob.com/docker/docker-tutorial.html](https://www.runoob.com/docker/docker-tutorial.html)

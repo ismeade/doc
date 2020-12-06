@@ -1,3 +1,7 @@
+# Docker run 命令
+
+docker run ：创建一个新的容器并运行一个命令
+
 ## 语法
 
 > docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
@@ -22,3 +26,11 @@
 - --expose=[]: 开放一个端口或一组端口；
 - --volume , -v: 绑定一个卷
 
+## 例子
+```sh
+docker run -d
+           -p 80:80
+           -v ./index.html:/usr/share/nginx/html/index.html
+           --name nginx
+           nginx:latest
+```
