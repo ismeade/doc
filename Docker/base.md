@@ -50,6 +50,7 @@ Docker 容器通过 Docker 镜像来创建。
 ### 安装
 
 ```bash
+# 使用官方脚本安装
 $curl -fsSL https://get.docker.com -o get-docker.sh
 $chmod u+x get-docker.sh
 $./get-docker
@@ -59,21 +60,35 @@ $sudo docker info
 
 ## 命令
 
-[run](./command/run.md): 创建一个新的容器并运行一个命令
-[start](./command/start_stop_restart.md): 启动一个或多个已经被停止的容器
-[stop](./command/start_stop_restart.md): 停止一个运行中的容器
-[restart](./command/start_stop_restart.md): 重启容器
-[kill](./command/kill.md): 杀掉一个运行中的容器
-[rm](./command/rm.md): 删除一个或多个容器
-[pause](./command/pause_unpause.md): 暂停容器中所有的进程
-[unpause](./command/pause_unpause.md): 恢复容器中所有的进程
-[create](./command/create.md)
+- [run](./command/run.md): 创建一个新的容器并运行一个命令
+- [start](./command/start_stop_restart.md): 启动一个或多个已经被停止的容器
+- [stop](./command/start_stop_restart.md): 停止一个运行中的容器
+- [restart](./command/start_stop_restart.md): 重启容器
+- [kill](./command/kill.md): 杀掉一个运行中的容器
+- [rm](./command/rm.md): 删除一个或多个容器
+- [pause](./command/pause_unpause.md): 暂停容器中所有的进程
+- [unpause](./command/pause_unpause.md): 恢复容器中所有的进程
+- [create](./command/create.md)
 
-[ps](./command/ps.md): 容器列表
-[top](./command/top.md): 查看容器中运行的进程信息，支持 ps 命令参数。
-[logs](./command/logs.md): 获取容器的日志
-[exprot](./command/export.md): 将文件系统作为一个tar归档文件导出到STDOUT
-[port](./command/port.md): 列出指定的容器的端口映射
+- [ps](./command/ps.md): 容器列表
+- [top](./command/top.md): 查看容器中运行的进程信息，支持 ps 命令参数。
+- [logs](./command/logs.md): 获取容器的日志
+- [exprot](./command/export.md): 将文件系统作为一个tar归档文件导出到STDOUT
+- [port](./command/port.md): 列出指定的容器的端口映射
+
+- [cp](./command/cp.md): 用于容器与主机之间的数据拷贝
+
+- [login](./command/login_logout.md): 登陆到一个Docker镜像仓库
+- [logout](./command/login_logout.md): 登出一个Docker镜像仓库
+
+- [pull](./command/pull.md): 从镜像仓库中拉取或者更新指定镜像
+- [push](./command/push.md): 将本地的镜像上传到镜像仓库,要先登陆到镜像仓库
+- [search](./command/search.md): 从Docker Hub查找镜像
+
+- [images](./command/images.md): 列出本地镜像
+- [rmi](./command/rmi.md): 删除本地一个或多少镜像。
+- [tag](./command/tag.md): 标记本地镜像，将其归入某一仓库
+- [build](./command/build.md): 命令用于使用 Dockerfile 创建镜像。
 
 
 ## 镜像
