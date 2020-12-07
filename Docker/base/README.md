@@ -1,5 +1,4 @@
 ## 什么是 Docker
-Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中,然后发布到任何流行的Linux机器或Windows 机器上,也可以实现虚拟化,容器是完全使用沙箱机制,相互之间不会有任何接口。
 - Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从 Apache2.0 协议开源。
 
 - Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
@@ -68,7 +67,7 @@ $sudo docker info
 - [rm](./command/rm.md): 删除一个或多个容器
 - [pause](./command/pause_unpause.md): 暂停容器中所有的进程
 - [unpause](./command/pause_unpause.md): 恢复容器中所有的进程
-- [create](./command/create.md)
+- [create](./command/create.md): 创建一个新的容器但不启动它
 
 - [ps](./command/ps.md): 容器列表
 - [top](./command/top.md): 查看容器中运行的进程信息，支持 ps 命令参数。
