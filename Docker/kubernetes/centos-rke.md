@@ -5,7 +5,7 @@
 > 注意 .ssh权限 700 authorized_keys 权限 600 否则不能公钥登录
 
 配置阿里yum源
-```
+```sh
 #CentOS 6
 wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-6.repo
 或者
@@ -30,7 +30,7 @@ sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packag
 ```
 
 删除docker
-```
+```sh
 # Uninstall installed docker
 sudo yum remove docker \
                   docker-client \
@@ -44,7 +44,7 @@ sudo yum remove docker \
                   docker-engine
 ```
 配置阿里云Docker Yum源
-```
+```sh
 # Set up repository
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
@@ -54,17 +54,17 @@ sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/cen
 
 安装指定版本
 查看Docker版本：
-```
+```sh
 yum list docker-ce --showduplicates
 ```
 
 安装Docker较新版本（比如Docker 18.06.0)时加上rpm包名的版本号部分：
-```
+```sh
 sudo yum install docker-ce-18.06.0.ce
 ```
 
 启动Docker服务
-```
+```sh
 # Start docker service
 systemctl enable docker
 systemctl start docker
@@ -74,7 +74,7 @@ systemctl start docker
 针对Docker客户端版本大于 1.10.0 的用户
 
 您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器
-```
+```sh
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
@@ -86,7 +86,7 @@ sudo systemctl restart docker
 ```
 
 添加docker sudo权限
-```
+```sh
 # 没有就添加一个 正常是有的
 sudo groupadd docker
 # 将用户加入该 group 内。然后退出并重新登录
@@ -100,7 +100,7 @@ newgrp  docker
 主机名：
 
 如果是克隆的系统一定要修改主机名，hostname主机名必须不同！
-```
+```sh
 hostnamectl set-hostname  自己想要的名字
 ```
 
@@ -112,7 +112,7 @@ hostnamectl set-hostname  自己想要的名字
 SELinux：
 
 必须关闭！Ubuntu 16.04默认未安装，无需设置。CentOS7下可修改配置文件/etc/sysconfig/selinux，设置SELINUX=disabled ，重启后永久关闭。
-```
+```sh
 sudo vim /etc/sysconfig/selinux
 
 SELINUX=disabled
@@ -121,7 +121,7 @@ SELINUX=disabled
 IPV4转发：
 
 必须开启！Ubuntu 16.04下默认已启用，无需设置。CentOS7 下可编辑配置文件/etc/sysctl.conf，设置启用转发,
-```
+```sh
 sudo vim /etc/sysctl.conf
 
 net.ipv4.ip_forward = 1              
@@ -133,7 +133,7 @@ net.bridge.bridge-nf-call-iptables = 1
 防火墙：
 
 开放集群主机节点之间6443、2379、2380端口，如果是刚开始试用，可以先关闭防火墙；Ubuntu默认未启用UFW防火墙，无需设置。也可手工关闭：sudo ufw disable
-```
+```sh
 # centos
 sudo systemctl disable firewall.service
 sudo systemctl stop firewall.service
@@ -152,7 +152,7 @@ sudo systemctl status firewalld
 启用Cgroup：
 
 修改配置文件/etc/default/grub，启用cgroup内存限额功能,配置两个参数：
-```
+```sh
 sudo vim /etc/default/grub
 
 GRUB_CMDLINE_LINUX_DEFAULT="cgroup_enable=memory swapaccount=1"
@@ -165,11 +165,15 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 
 SSH免密登录：
 
+> 见linux -> ssh部分
+
+
+
 ## rke-k8s
 下载 
 
 新建cluster.yml文件
-```
+```yaml
 nodes:
     - address: 192.168.56.2
       port: 22
@@ -193,7 +197,7 @@ nodes:
 ```
 
 安装命令
-```
+```sh
 rke up --config cluster.yml
 ```
 然后程序会开始跑,有可能因为网络等原因失败,没关系 如果失败了 rke remove --config cluster.yml 删除集群,然后重新执行rke up --config cluster.yml 
