@@ -49,7 +49,7 @@ COPY ./docker/run.sh /usr/local/tomcat/bin/run.sh
 RUN chmod +x /usr/local/tomcat/bin/run.sh
 RUN wget http://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 && \
     chmod 755 ossutil64 && \
-    ./ossutil64 config -e oss-cn-beijing-internal.aliyuncs.com -i LTAI4G2wSDchDfDzr1WN4ab2 -k b4MfNt4dcFfmWvcFrx5k4jaH27xTD7
+    ./ossutil64 config -e oss-cn-beijing-internal.aliyuncs.com -i xxxxxxxxxxxxxxxx -k xxxxxxxxxxxxxxx
 
 #EXPOSE 8080
 
