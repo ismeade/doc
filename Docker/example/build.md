@@ -44,17 +44,17 @@ FROM registry.cn-beijing.aliyuncs.com/vcheck/tomcat:8.5.40-jre8-alpine
 LABEL maintainer="yang.li@51vcheck.cn"
 
 ENV ACTIVE uat
-# 
-COPY ../target/mz-mall/ /usr/local/tomcat/webapps/mz-mall/
 
-# 安装阿里oss客户端
-RUN wget http://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 && \
-    chmod 755 ossutil64 && \
-    ./ossutil64 config -e oss-cn-beijing-internal.aliyuncs.com -i xxxxxxxxxxxxxxxxxx -k b4MfNt4dcFfmWvcFrx5k4jaH27xTD7
-
-EXPOSE 8080
-# 
 COPY ./docker/run.sh /usr/local/tomcat/bin/run.sh
 RUN chmod +x /usr/local/tomcat/bin/run.sh
+RUN wget http://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 && \
+    chmod 755 ossutil64 && \
+    ./ossutil64 config -e oss-cn-beijing-internal.aliyuncs.com -i LTAI4G2wSDchDfDzr1WN4ab2 -k b4MfNt4dcFfmWvcFrx5k4jaH27xTD7
+
+#EXPOSE 8080
+
+COPY ../target/mz-mall/ /usr/local/tomcat/webapps/mz-mall/
+
 CMD ["sh", "/usr/local/tomcat/bin/run.sh"]
+
 ```
