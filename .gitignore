@@ -5,6 +5,12 @@ logs/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+*.tar.gz
+*.zip
+*.rar
+*.tar
+*.7z
+
 ### STS ###
 .apt_generated
 .classpath

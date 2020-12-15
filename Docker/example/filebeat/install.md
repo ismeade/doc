@@ -4,52 +4,40 @@
 ### 基础镜像 Dockerfile 增加
 ```Dockerfile
 
-COPY ./run.sh /tmp/run.sh
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
-    apk add --update-cache curl libc6-compat && \
-    curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.10.1-linux-x86_64.tar.gz && \
-    tar xzvf filebeat-7.10.1-linux-x86_64.tar.gz -C / && \
-    apk del curl && \
-    rm filebeat-7.10.1-linux-x86_64.tar.gz && \
-    chmod +x /tmp/run.sh
+ENV SERVICE_NAME=unknown \
+    LOG_PATH=/logs \
+    LOGSTASH_HOST=
+
+ADD ./filebeat-7.10.1-linux-x86_64.tar.gz / 
+COPY ./entrypoint.sh /filebeat-7.10.1-linux-x86_64/entrypoint.sh
 COPY ./filebeat.yml /filebeat-7.10.1-linux-x86_64/filebeat.yml
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk add --update-cache libc6-compat \
+    && mv /filebeat-7.10.1-linux-x86_64 /filebeat \
+    && chmod +x /filebeat/entrypoint.sh
 
 ```
 
-### filebeat.yml 内容, 修改path路径为日志路径
+### filebeat.yml 内容
 ```yaml
 filebeat.inputs:
 - type: log
   enable: true
   fields:
-    service_name: unknown
+    service_name: ${SERVICE_NAME}
   fields_under_root: true
   paths:
-    - /usr/local/tomcat/logs/*.log # 修改为日志路径，未来基于这个镜像的项目，日志都放这里
+    - ${LOG_PATH}/*.log
 
 output.logstash:
-  hosts: ["localhost:5044"]
+  hosts: ["${LOGSTASH_HOST}:5044"]
 ```
 
-### run.sh 内容，不需要修改
+### entrypoint.sh 内容
 ```sh
 #!/bin/bash
-sed -i "s/unknown/${SERVICE_NAME}/g" /filebeat-7.10.1-linux-x86_64/filebeat.yml
-
 if [ -n "$LOGSTASH_HOST" ]; then
-    sed -i "s/localhost/${LOGSTASH_HOST}/g" /filebeat-7.10.1-linux-x86_64/filebeat.yml
-    nohup /filebeat-7.10.1-linux-x86_64/filebeat -e -c /filebeat-7.10.1-linux-x86_64/filebeat.yml -d "publish" > /dev/null >2& >1 &
+    nohup /filebeat/filebeat -e -c /filebeat/filebeat.yml -d "publish" > /dev/null >2& >1 &
 fi
 ```
-
-### 制作基础镜像，下载filebeat安装包可能比较慢，多试几次
-
-## 项目镜像
-基于上边制作的基础镜像
-
-### 配置文件改造
-不同环境需要调整的配置文件，常规配置文件不需要，比如数据库信息  
-比如xxxxx.xxx是本地的配置文件  
-添加xxxxx-uat.xxx 和 xxxxx-pro.xxx 配置文件  
-uat: 模拟生产环境  
-pro: 生产环境
