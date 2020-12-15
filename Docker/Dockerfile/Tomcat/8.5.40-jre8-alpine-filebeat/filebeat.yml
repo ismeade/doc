@@ -1,0 +1,11 @@
+filebeat.inputs:
+- type: log
+  enable: true
+  fields:
+    service_name: unknown
+  fields_under_root: true
+  paths:
+    - /usr/local/tomcat/logs/*.log
+
+output.logstash:
+  hosts: ["localhost:5044"]
