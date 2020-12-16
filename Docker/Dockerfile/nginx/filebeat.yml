@@ -1,0 +1,12 @@
+filebeat.inputs:
+- type: log
+  enable: true
+  fields:
+    service_name: ${SERVICE_NAME}
+  fields_under_root: true
+  paths:
+    - ${LOG_PATH}/*.log
+
+output.logstash:
+  hosts: ["${LOGSTASH_HOST}:5044"]
+
