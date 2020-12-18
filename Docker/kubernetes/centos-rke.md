@@ -7,27 +7,22 @@
 配置阿里yum源
 ```sh
 #CentOS 6
-wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-6.repo
+sudo wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-6.repo
 或者
-curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-6.repo
+sudo curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-6.repo
 #CentOS 7
-wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+sudo wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 或者
-curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+sudo curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 #CentOS 8
-wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
+sudo wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
 或者
-curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
+sudo curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
 
-yum makecache
+sudo yum makecache
 ```
 
 ## 安装docker
-
-centos8以上需要
-```
-sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
-```
 
 删除docker
 ```sh
@@ -43,6 +38,12 @@ sudo yum remove docker \
                   docker-engine-selinux \
                   docker-engine
 ```
+
+centos8以上需要
+```
+sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+```
+
 配置阿里云Docker Yum源
 ```sh
 # Set up repository
@@ -55,7 +56,7 @@ sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/cen
 安装指定版本
 查看Docker版本：
 ```sh
-yum list docker-ce --showduplicates
+sudo yum list docker-ce --showduplicates
 ```
 
 安装Docker较新版本（比如Docker 18.06.0)时加上rpm包名的版本号部分：
@@ -66,8 +67,8 @@ sudo yum install docker-ce-18.06.0.ce
 启动Docker服务
 ```sh
 # Start docker service
-systemctl enable docker
-systemctl start docker
+sudo systemctl enable docker
+sudo systemctl start docker
 ```
 
 配置镜像加速器
