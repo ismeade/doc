@@ -14,4 +14,11 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && mv /filebeat-7.10.1-linux-x86_64 /filebeat \
     && chmod +x /filebeat/entrypoint.sh
 
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
+    PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+
+RUN apk update && \
+    apk add --no-cache openjdk8 curl && \
+    curl -O https://arthas.aliyun.com/arthas-boot.jar
+
 # ENTRYPOINT [ "/filebeat/entrypoint.sh" ]

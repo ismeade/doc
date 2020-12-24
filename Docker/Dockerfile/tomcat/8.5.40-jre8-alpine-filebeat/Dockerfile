@@ -24,4 +24,13 @@ RUN apk add --update-cache libc6-compat \
     && mv /filebeat-7.10.1-linux-x86_64 /filebeat \
     && chmod +x /filebeat/entrypoint.sh
 
+# ADD ./arthas-packaging-3.4.5-bin.zip /
+
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
+    PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+
+RUN apk update && \
+    apk add --no-cache openjdk8 curl && \
+    curl -O https://arthas.aliyun.com/arthas-boot.jar
+
 EXPOSE 8080 
