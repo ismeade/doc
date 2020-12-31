@@ -10,3 +10,11 @@ filebeat.inputs:
 output.logstash:
   hosts: ["${LOGSTASH_HOST}:5044"]
 
+
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0644
