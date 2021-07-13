@@ -26,7 +26,10 @@ https://api.51vcheck.cn/v1/
 RESTful中，每一个资源都有一个网址代表，如：
 ```
 https://api.51vcheck.cn/cloud/user
-
+                |         |    |
+                |         |    +- 资源名
+                |         +- 服务名
+                +- 网关
 ```
 
 **每一个网址代表一种资源，避免出现动词**
@@ -48,6 +51,12 @@ GET https://api.51vcheck.cn/cloud/user/{userId}
 GET https://api.51vcheck.cn/cloud/user/{userId}/role
 获取用户所有地址
 GET https://api.51vcheck.cn/cloud/user/{userId}/address
+获取用户某个地址
+GET https://api.51vcheck.cn/cloud/user/{userId}/address/{addressId}
+获取用户所有订单
+GET https://api.51vcheck.cn/cloud/user/{userId}/order
+获取用户所有好友
+GET https://api.51vcheck.cn/cloud/user/{userId}/friend
 
 新建用户
 POST https://api.51vcheck.cn/cloud/user
@@ -68,17 +77,13 @@ DELETE https://api.51vcheck.cn/cloud/user/{userId}
 DELETE https://api.51vcheck.cn/cloud/user/{userId}/address/{addressId}
 ```
 
-_授权服务中的“获取token”用什么操作_
-
-
 ## 过滤条件 ##
-
 ```
 GET https://api.51vcheck.cn/cloud/user?page=1&pageSize=10
 
 GET https://api.51vcheck.cn/cloud/user?page=1&pageSize=10&status=1
 GET https://api.51vcheck.cn/cloud/user?page=1&pageSize=10&sortby=create_time&order=desc
-
+GET https://api.51vcheck.cn/cloud/user?page=1&pageSize=10&name_like=li
 
 GET https://api.51vcheck.cn/cloud/user/{userId}/address
 等于
